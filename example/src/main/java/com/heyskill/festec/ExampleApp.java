@@ -3,6 +3,7 @@ package com.heyskill.festec;
 import android.app.Application;
 
 import com.heyskill.latte_core.app.Latte;
+import com.heyskill.latte_core.net.interceptors.DebugInterceptor;
 import com.heyskill.latte_ec.icon.FontEcModule;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 
@@ -14,6 +15,7 @@ public class ExampleApp extends Application {
                 .withApiHost("http://127.0.0.1/")
                 .withIcon(new FontAwesomeModule())
                 .withIcon(new FontEcModule())
+                .withInterceptor(new DebugInterceptor("index",R.raw.test))
                 .configure();
     }
 }

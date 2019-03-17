@@ -1,6 +1,7 @@
 package com.heyskill.festec;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -24,11 +25,12 @@ public class ExampleDelegate extends LatteDelegate {
 
     private void testRestClient(){
         RestClient.builder()
-                .url("https://www.jianshu.com/p/36e9eb09077d")
+                .url("http://127.0.0.1/index")
                 .loader(getContext())
-                .success(new iSuccess() {
+                .success(new iSuccess(){
                     @Override
                     public void onSuccess(String response) {
+                        Log.d("hhhh",response);
                         Toast.makeText(getContext(),response,Toast.LENGTH_LONG).show();
                     }
                 })

@@ -8,6 +8,7 @@ import com.heyskill.latte_core.net.callBack.IRequest;
 import com.heyskill.latte_core.net.callBack.iSuccess;
 import com.heyskill.latte_core.ui.LoaderStyle;
 
+import java.io.File;
 import java.util.Map;
 import java.util.WeakHashMap;
 
@@ -25,6 +26,10 @@ public class RestClientBuilder {
     private  RequestBody mBody;
     private  Context mContext;
     private  LoaderStyle mLoaderstyle;
+    private  File mFile;
+    private  String mDownloadDir;
+    private  String mExtension;
+    private  String mName;
 
     RestClientBuilder(){
     }
@@ -42,6 +47,30 @@ public class RestClientBuilder {
     public final RestClientBuilder params(String key,Object value){
        PARAMS.put(key, value);
        return this;
+    }
+
+    public final RestClientBuilder file(File file){
+        this.mFile = file;
+        return this;
+    }
+
+    public final RestClientBuilder file(String file){
+        this.mFile = new File(file);
+        return this;
+    }
+
+    public final RestClientBuilder name(String name){
+        this.mName = name;
+        return this;
+    }
+
+    public final RestClientBuilder dir(String dir){
+        this.mDownloadDir = dir;
+        return this;
+    }
+    public final RestClientBuilder extension(String extension){
+        this.mExtension = extension;
+        return this;
     }
 
     public final RestClientBuilder raw(String raw){
@@ -83,7 +112,7 @@ public class RestClientBuilder {
 
 
     public final RestClient build(){
-        return  new RestClient(mUrl,PARAMS,mRequest,mSuccess,mFailture,mError,mBody,mContext,mLoaderstyle);
+        return  new RestClient(mUrl,PARAMS,mRequest,mSuccess,mFailture,mError,mBody,mContext,mLoaderstyle,mFile,mDownloadDir,mExtension,mName);
     }
 
 
